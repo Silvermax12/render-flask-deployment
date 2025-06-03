@@ -3,7 +3,6 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# MySQL database configuration
 db_config = {
     'host': 'localhost',
     'user': 'root',
@@ -11,7 +10,6 @@ db_config = {
     'database': 'your_database'
 }
 
-# Create MySQL connection
 def get_db_connection():
     return mysql.connector.connect(**db_config)
 
@@ -24,7 +22,6 @@ def login():
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
     
-    # Check credentials in the database
     cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
     user = cursor.fetchone()
 
